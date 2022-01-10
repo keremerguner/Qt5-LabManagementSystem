@@ -138,27 +138,31 @@ void EmployeeInfo::on_pushButton_load_tbl_clicked()
 {
     MainWindow conn;
     QSqlQueryModel * modal = new QSqlQueryModel();
+    QSqlQueryModel * modalListView = new QSqlQueryModel();
 
     conn.connOpen();
     QSqlQuery* qry = new QSqlQuery(conn.mydb);
+    QSqlQuery* qryListView = new QSqlQuery(conn.mydb);
 
     qry->prepare("select name,surname,blood_group,tc from Users");
+    qryListView->prepare("select name from Users");
 
     qry->exec();
+    qryListView->exec();
     modal->setQuery(*qry);
+    modalListView->setQuery(*qryListView);
     ui->tableView->setModel(modal);
-    ui->listView->setModel(modal);
+    ui->listView->setModel(modalListView);
 
 
     conn.connClose();
-    qDebug() << (modal->rowCount());
+    //qDebug() << (modal->rowCount());
 }
 
 
 void EmployeeInfo::on_listView_activated(const QModelIndex &index)
 {
     QString val=ui->listView->model()->data(index).toString();
-
     MainWindow conn;
 
     //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
@@ -169,25 +173,24 @@ void EmployeeInfo::on_listView_activated(const QModelIndex &index)
     }
 //
     conn.connOpen();
-    QSqlQuery qry;
-    qry.prepare("select * from Users where name='"+val+"'");
+    QSqlQuery qryListView;
+    qryListView.prepare("select * from Users where name='"+val+"'");
 
-    if(qry.exec()){
+    if(qryListView.exec()){
 
-        while(qry.next()){
-            ui->txt_tc->setText(qry.value(7).toString());
-            ui->txt_name->setText(qry.value(4).toString());
-            ui->txt_surname->setText(qry.value(5).toString());
-            ui->txt_blood_group->setText(qry.value(6).toString());
-            ui->txt_gender->setText(qry.value(8).toString());
-            ui->txt_age->setText(qry.value(9).toString());
+        while(qryListView.next()){
+            ui->txt_tc->setText(qryListView.value(7).toString());
+            ui->txt_name->setText(qryListView.value(4).toString());
+            ui->txt_surname->setText(qryListView.value(5).toString());
+            ui->txt_blood_group->setText(qryListView.value(6).toString());
+            ui->txt_gender->setText(qryListView.value(8).toString());
+            ui->txt_age->setText(qryListView.value(9).toString());
 
 
         }
-
     conn.connClose();
     }
     else{
-        QMessageBox::critical(this,tr("error::"),qry.lastError().text());
+        QMessageBox::critical(this,tr("error::"),qryListView.lastError().text());
     }
 }
