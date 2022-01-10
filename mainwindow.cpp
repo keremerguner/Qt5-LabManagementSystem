@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "assistantinfo.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,7 +41,7 @@ void MainWindow::on_pushButton_clicked()
 //
     connOpen();
     QSqlQuery qry;
-    qry.prepare("select * from Users where username='"+username +"'and password='"+password +"' ");
+    qry.prepare("select * from Users where username='"+username +"'and password='"+password +"' and roll_id=1");
 
     if(qry.exec()){
 
@@ -64,6 +65,33 @@ void MainWindow::on_pushButton_clicked()
         }
 
     }
+
+    //ASSISTANT LOGIN
+    qry.prepare("select * from Users where username='"+username +"'and password='"+password +"' and roll_id=2");
+
+    if(qry.exec()){
+
+        int count=0;
+        while(qry.next()){
+
+            count++;
+        }
+        if(count==1){
+            ui->label->setText("Username and password is TRUE ");
+            //Eger basarili giris yapilirsa login ekrannii silip ikinci ekrani gösterir
+            connClose();
+            this->hide();
+            assistantinfo assistantinfo;
+            assistantinfo.setModal(true);
+            assistantinfo.exec();
+//
+        }
+        if(count<1){
+            ui->label->setText("Username and password (is not) TRUE ");
+        }
+
+    }
+
 //
 }
 

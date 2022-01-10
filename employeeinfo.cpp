@@ -46,7 +46,7 @@ void EmployeeInfo::on_pushButton_clicked()
 //
     conn.connOpen();
     QSqlQuery qry;
-    qry.prepare("INSERT INTO Users(name,surname,blood_group,tc,gender,age) VALUES('"+name+"', '"+surname+"','"+blood_group+"','"+tc+"','"+gender+"','"+age+"')");
+    qry.prepare("INSERT INTO Users(name,surname,blood_group,tc,gender,age,roll_id) VALUES('"+name+"', '"+surname+"','"+blood_group+"','"+tc+"','"+gender+"','"+age+"',3)");
 
     if(qry.exec()){
     QMessageBox::critical(this,tr("Save"),tr("Saved"));
@@ -144,8 +144,8 @@ void EmployeeInfo::on_pushButton_load_tbl_clicked()
     QSqlQuery* qry = new QSqlQuery(conn.mydb);
     QSqlQuery* qryListView = new QSqlQuery(conn.mydb);
 
-    qry->prepare("select name,surname,blood_group,tc from Users");
-    qryListView->prepare("select name from Users");
+    qry->prepare("select name,surname,blood_group,tc from Users where roll_id=3");
+    qryListView->prepare("select name from Users where roll_id=3");
 
     qry->exec();
     qryListView->exec();
