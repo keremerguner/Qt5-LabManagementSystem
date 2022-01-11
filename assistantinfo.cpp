@@ -46,7 +46,32 @@ void assistantinfo::on_pushButton_assistant_load_tbl_clicked()
 
 void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 {
+    MainWindow conn;
+    //Login Panelinde kullanıcı adi ve sifre line olusturuldu
+    QString blood_group,tc;
+    blood_group=ui->txt_assistant_blood_group->text();
+    tc=ui->txt_assistant_tc->text();
 
+//
+    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+    if(!conn.connOpen()){
+        qDebug()<< "Failed to open the database";
+        return;
+
+    }
+//
+    conn.connOpen();
+    QSqlQuery qry;
+    //En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz roll_id'ye göre update islemini gerceklestiriyoruz
+    qry.prepare("update Users set blood_group='"+blood_group+"',tc='"+tc+"' where tc='"+tc+"'");
+
+    if(qry.exec()){
+    QMessageBox::critical(this,tr("Edit"),tr("Update"));
+    conn.connClose();
+    }
+    else{
+        QMessageBox::critical(this,tr("error::"),qry.lastError().text());
+    }
 }
 
 
@@ -69,6 +94,7 @@ void assistantinfo::on_tableView_assistant_activated(const QModelIndex &index)
         while(qry.next()){
 
             ui->txt_assistant_blood_group->setText(qry.value(6).toString());
+            ui->txt_assistant_tc->setText(qry.value(7).toString());
 
         }
     conn.connClose();
