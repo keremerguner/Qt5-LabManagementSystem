@@ -27,7 +27,7 @@ public:
 
         //DataBase baglantilari olusturuldu
         mydb = QSqlDatabase::addDatabase("QSQLITE");
-        mydb.setDatabaseName("C:/Users/ergun/Desktop/qtDataBase/dataBase.sqlite.db");
+        mydb.setDatabaseName("C:/Users/ergun/Desktop/dbBaglantiQtProje/qtDenemeDb2/qtDataBase/dataBase.sqlite.db");
     //
         //Database basariyla aciliyormu kontorlu yapildi
         if(!mydb.open()){

@@ -20,6 +20,8 @@ private slots:
 
     void on_pushButton_assistan_blood_group_update_clicked();
 
+    void on_tableView_assistant_activated(const QModelIndex &index);
+
 private:
     Ui::assistantinfo *ui;
 };
