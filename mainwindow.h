@@ -25,11 +25,11 @@ public:
     }
     bool connOpen(){
 
-        //DataBase baglantilari olusturuldu
+//DataBase baglantilari olusturuldu
         mydb = QSqlDatabase::addDatabase("QSQLITE");
         mydb.setDatabaseName("C:/Users/ergun/Desktop/dbBaglantiQtProje/qtDenemeDb2/qtDataBase/dataBase.sqlite.db");
-    //
-        //Database basariyla aciliyormu kontorlu yapildi
+
+//Database basariyla aciliyormu kontorlu yapildi
         if(!mydb.open()){
             qDebug()<<("DataBase Hatasi ");
             return false;

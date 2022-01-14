@@ -8,7 +8,7 @@ EmployeeInfo::EmployeeInfo(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //Database basariyla aciliyormu kontorlu yapildi
+//Database basariyla aciliyormu kontorlu yapildi
     MainWindow conn;
     if(!conn.connOpen()){
 
@@ -27,7 +27,7 @@ EmployeeInfo::~EmployeeInfo()
 void EmployeeInfo::on_pushButton_clicked()
 {
     MainWindow conn;
-    //Login Panelinde kullanıcı adi ve sifre line olusturuldu
+//Yeni hasta kayit ederken SAVE isleminin dondugu yer
     QString name,surname,blood_group,tc,gender,age;
     name=ui->txt_name->text();
     surname=ui->txt_surname->text();
@@ -36,16 +36,17 @@ void EmployeeInfo::on_pushButton_clicked()
     gender=ui->txt_gender->text();
     age=ui->txt_age->text();
 
-//
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
         return;
 
     }
-//
+
     conn.connOpen();
     QSqlQuery qry;
+//Save isleminin sorgusunun dondugu yer
     qry.prepare("INSERT INTO Users(name,surname,blood_group,tc,gender,age,roll_id) VALUES('"+name+"', '"+surname+"','"+blood_group+"','"+tc+"','"+gender+"','"+age+"',3)");
 
     if(qry.exec()){
@@ -55,7 +56,7 @@ void EmployeeInfo::on_pushButton_clicked()
     else{
         QMessageBox::critical(this,tr("error::"),qry.lastError().text());
     }
-//
+
 }
 
 
@@ -63,7 +64,7 @@ void EmployeeInfo::on_pushButton_Edit_clicked()
 {
 
         MainWindow conn;
-        //Login Panelinde kullanıcı adi ve sifre line olusturuldu
+//Bulunan hastanin bilgilerinin guncellendigi yer
         QString name,surname,blood_group,tc,gender,age;
         name=ui->txt_name->text();
         surname=ui->txt_surname->text();
@@ -72,17 +73,17 @@ void EmployeeInfo::on_pushButton_Edit_clicked()
         gender=ui->txt_gender->text();
         age=ui->txt_age->text();
 
-    //
-        //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+
+//Database icine giris yapildi mi kontrolu saglandi
         if(!conn.connOpen()){
             qDebug()<< "Failed to open the database";
             return;
 
         }
-    //
+
         conn.connOpen();
         QSqlQuery qry;
-        //En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz roll_id'ye göre update islemini gerceklestiriyoruz
+//En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
         qry.prepare("update Users set name='"+name+"',surname='"+surname+"',blood_group='"+blood_group+"',tc='"+tc+"',gender='"+gender+"',age='"+age+"' where tc='"+tc+"'");
 
         if(qry.exec()){
@@ -92,38 +93,30 @@ void EmployeeInfo::on_pushButton_Edit_clicked()
         else{
             QMessageBox::critical(this,tr("error::"),qry.lastError().text());
         }
-    //
+
 
 }
 
 
 void EmployeeInfo::on_pushButton_Delete_clicked()
 {
-    //Delete isleminde sadece roll idye gore yapacagimiz icin onun disindakiler yorumda
+//Delete isleminde sadece Tc'ye gore yapiyoruz
     MainWindow conn;
-    //Login Panelinde kullanıcı adi ve sifre line olusturuldu
     QString tc;
-    //QString name,surname,blood_group,gender,age
     tc=ui->txt_tc->text();
-    //name=ui->txt_name->text();
-    //surname=ui->txt_surname->text();
-    //blood_group=ui->txt_blood_group->text();
-    //tc=ui->txt_tc->text();
-    //gender=ui->txt_gender->text();
-    //age=ui->txt_age->text();
 
-//
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
         return;
 
     }
-//
+
     conn.connOpen();
     QSqlQuery qry;
     qry.prepare("Delete from Users where tc='"+tc+"'");
-
+//Delete islemi icin sorgumuzu yaptıgımız yer
     if(qry.exec()){
     QMessageBox::critical(this,tr("Delete"),tr("Deleted"));
     conn.connClose();
@@ -165,7 +158,7 @@ void EmployeeInfo::on_listView_activated(const QModelIndex &index)
     QString val=ui->listView->model()->data(index).toString();
     MainWindow conn;
 
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
         return;

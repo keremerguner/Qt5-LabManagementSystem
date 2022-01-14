@@ -9,7 +9,7 @@ assistantinfo::assistantinfo(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //Database basariyla aciliyormu kontorlu yapildi
+//Database basariyla aciliyormu kontorlu yapildi
     MainWindow conn;
     if(!conn.connOpen()){
 
@@ -47,22 +47,22 @@ void assistantinfo::on_pushButton_assistant_load_tbl_clicked()
 void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 {
     MainWindow conn;
-    //Login Panelinde kullanıcı adi ve sifre line olusturuldu
+//Hasta kan grubunun guncellenmesi icin assistant pannel
     QString blood_group,tc;
     blood_group=ui->txt_assistant_blood_group->text();
     tc=ui->txt_assistant_tc->text();
 
-//
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+
+//Database icine giris yapildi mi kontrolu saglandi
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
         return;
 
     }
-//
+
     conn.connOpen();
     QSqlQuery qry;
-    //En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz roll_id'ye göre update islemini gerceklestiriyoruz
+//En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
     qry.prepare("update Users set blood_group='"+blood_group+"',tc='"+tc+"' where tc='"+tc+"'");
 
     if(qry.exec()){

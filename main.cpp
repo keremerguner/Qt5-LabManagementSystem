@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    // Background Style
+    // Background Style Entegresinin yapildigi yer
     QFile styleSheetFile("C:/Users/ergun/Desktop/dbBaglantiQtProje/qtDenemeDb2/Toolery.qss");
     styleSheetFile.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(styleSheetFile.readAll());

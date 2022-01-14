@@ -78,7 +78,7 @@ void MainWindow::on_pushButton_clicked()
         }
         if(count==1){
             ui->label->setText("Username and password is TRUE ");
-            //Eger basarili giris yapilirsa login ekrannii silip ikinci ekrani gösterir
+            //Eger basarili giris yapilirsa login ekrannii silip assitant ekrani gösterir
             connClose();
             this->hide();
             assistantinfo assistantinfo;
