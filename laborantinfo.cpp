@@ -17,6 +17,7 @@ LaborantInfo::~LaborantInfo()
 
 void LaborantInfo::on_pushButton_Load_To_Table_clicked()
 {
+//Sorgu islemleriyle birlikte Hastanin bilgilerini gösterir
     MainWindow conn;
     QSqlQueryModel * modal = new QSqlQueryModel();
 
@@ -34,7 +35,7 @@ void LaborantInfo::on_pushButton_Load_To_Table_clicked()
 }
 
 void LaborantInfo::WelcomeTextLaborant(){
-
+//Sol ust barda Laborant bilgisi
     MainWindow conn;
 
     QSqlQuery* qryAsDoc = new QSqlQuery(conn.mydb);
@@ -53,6 +54,7 @@ void LaborantInfo::WelcomeTextLaborant(){
 
 void LaborantInfo::on_pushButton_close_clicked()
 {
+//Bir önceki ekrana atar
     this->hide();
 }
 

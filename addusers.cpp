@@ -17,6 +17,7 @@ AddUsers::~AddUsers()
 
 
 void AddUsers::DataBaseControlUsers(){
+//Database eger ki acilmazsa hata mesaji ( kontrol edildi )
     MainWindow conn;
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
@@ -27,10 +28,11 @@ void AddUsers::DataBaseControlUsers(){
 }
 
 void AddUsers::DoctorAdd(){
+//RadioButton Doktor ekleme islevi
     if(ui->radioButton_doctor_add->isChecked()){
 
         MainWindow conn;
-    //Yeni hasta kayit ederken SAVE isleminin dondugu yer
+//Yeni Doktor kayit ederken SAVE isleminin dondugu yer
         QString username,password,name,surname;
         username=ui->lineEdit_2_db_username->text();
         password=ui->lineEdit_3_db_password->text();
@@ -38,10 +40,10 @@ void AddUsers::DoctorAdd(){
         surname=ui->lineEdit_5_db_employee_surname->text();
 
 
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
         conn.connOpen();
         QSqlQuery qry;
-    //Save isleminin sorgusunun dondugu yer
+//Save isleminin sorgusunun dondugu yer
         qry.prepare("INSERT INTO Users(username,password,name,surname,roll_id) VALUES('"+username+"', '"+password+"','"+name+"','"+surname+"',1)");
 
         if(qry.exec()){
@@ -57,11 +59,12 @@ void AddUsers::DoctorAdd(){
 }
 
 void AddUsers::AssistantAdd(){
+//RadioButton Assistant ekleme islevi
 
     if(ui->radioButton_2_assistant_add->isChecked()){
 
         MainWindow conn;
-    //Yeni hasta kayit ederken SAVE isleminin dondugu yer
+//Yeni Asistant kayit ederken SAVE isleminin dondugu yer
         QString username,password,name,surname;
         username=ui->lineEdit_2_db_username->text();
         password=ui->lineEdit_3_db_password->text();
@@ -69,10 +72,10 @@ void AddUsers::AssistantAdd(){
         surname=ui->lineEdit_5_db_employee_surname->text();
 
 
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
         conn.connOpen();
         QSqlQuery qry;
-    //Save isleminin sorgusunun dondugu yer
+//Save isleminin sorgusunun dondugu yer
         qry.prepare("INSERT INTO Users(username,password,name,surname,roll_id) VALUES('"+username+"', '"+password+"','"+name+"','"+surname+"',2)");
 
         if(qry.exec()){
@@ -87,11 +90,12 @@ void AddUsers::AssistantAdd(){
 }
 
 void AddUsers::LaborantAdd(){
+//RadioButton Laborant ekleme islevi
 
     if(ui->radioButton_laborant_add->isChecked()){
 
         MainWindow conn;
-    //Yeni hasta kayit ederken SAVE isleminin dondugu yer
+//Yeni laborant kayit ederken SAVE isleminin dondugu yer
         QString username,password,name,surname;
         username=ui->lineEdit_2_db_username->text();
         password=ui->lineEdit_3_db_password->text();
@@ -99,10 +103,10 @@ void AddUsers::LaborantAdd(){
         surname=ui->lineEdit_5_db_employee_surname->text();
 
 
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
         conn.connOpen();
         QSqlQuery qry;
-    //Save isleminin sorgusunun dondugu yer
+//Save isleminin sorgusunun dondugu yer
         qry.prepare("INSERT INTO Users(username,password,name,surname,roll_id) VALUES('"+username+"', '"+password+"','"+name+"','"+surname+"',4)");
 
         if(qry.exec()){
@@ -119,6 +123,7 @@ void AddUsers::LaborantAdd(){
 
 void AddUsers::on_pushButton_3_db_save_clicked()
 {
+//Hangi Users eklendiyse onun fonksiyonun dondugu kisim
     DataBaseControlUsers();
     DoctorAdd();
     AssistantAdd();
@@ -128,6 +133,7 @@ void AddUsers::on_pushButton_3_db_save_clicked()
 
 void AddUsers::on_pushButton_closed_clicked()
 {
+//Bir onceki menuye doner
     this->hide();
 }
 

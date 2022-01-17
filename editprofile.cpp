@@ -20,14 +20,14 @@ EditProfile::~EditProfile()
 void EditProfile::on_pushButton_profileEdit_Update_clicked()
 {
     MainWindow conn;
-//Bulunan hastanin bilgilerinin guncellendigi yer
+//Bulunan doktorun bilgilerinin guncellendigi yer
     QString name,surname;
     name=ui->lineEdit_Name_update->text();
     surname=ui->lineEdit_2_Surname_update->text();
 
     conn.connOpen();
     QSqlQuery qry;
-//En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
+//Sorgu isleminde hangilerinin editlenecegini belirtip, if icinde update olup olmadiginin bilgisini verilir
     qry.prepare("update Users set name='"+name+"',surname='"+surname+"' where surname='"+surname+"'");
 
     if(qry.exec()){
@@ -42,6 +42,7 @@ void EditProfile::on_pushButton_profileEdit_Update_clicked()
 
 void EditProfile::on_pushButton_2_ProfileEdit_Load_To_List_clicked()
 {
+//ListView da doktor isimlerinin goruntulenmesini saglar
     MainWindow conn;
     QSqlQueryModel * modalListView = new QSqlQueryModel();
 
@@ -55,12 +56,12 @@ void EditProfile::on_pushButton_2_ProfileEdit_Load_To_List_clicked()
     ui->listView->setModel(modalListView);
 
     conn.connClose();
-    //qDebug() << (modal->rowCount());
 }
 
 
 void EditProfile::on_listView_activated(const QModelIndex &index)
 {
+//ListView da gosterilen doktorların isimlerinin sorgusunun yapildigi kisim
     QString val=ui->listView->model()->data(index).toString();
     MainWindow conn;
 

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //Database basariyla aciliyormu kontorlu yapildi
+//Database basariyla aciliyor mu kontorlu yapildi
     if(!connOpen()){
         ui->label->setText("DataBase Hatasi ");
     }
@@ -19,9 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->label->setText("Database Basariyla Baglandi");
     }
 
-//
 }
-
 
 MainWindow::~MainWindow()
 {
@@ -31,18 +29,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    //Login Panelinde kullanıcı adi ve sifre line olusturuldu
+//Login Panelinde kullanıcı adi ve sifre line olusturuldu
     QString username,password;
     username=ui->lineEdit_Username->text();
     password=ui->lineEdit_2_Password->text();
-//
-    //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
+
+//Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
     if(!connOpen()){
         qDebug()<< "Failed to open the database";
         return;
 
     }
-//
+
     connOpen();
     QSqlQuery qry;
     qry.prepare("select * from Users where username='"+username +"'and password='"+password +"' and roll_id=1");
@@ -56,12 +54,12 @@ void MainWindow::on_pushButton_clicked()
         }
         if(count==1){
             ui->label->setText("Username and password is TRUE ");
-            //Eger basarili giris yapilirsa login ekrannii silip ikinci ekrani gösterir
+//Eger basarili giris yapilirsa login ekrannii silip ikinci ekrani gösterir
             connClose();
             DoctorInfo doctorinfo;
             doctorinfo.setModal(true);
             doctorinfo.exec();
-//
+
         }
         if(count<1){
             ui->label->setText("Username and password (is not) TRUE ");
@@ -69,7 +67,7 @@ void MainWindow::on_pushButton_clicked()
 
     }
 
-    //ASSISTANT LOGIN
+//ASSISTANT LOGIN
     qry.prepare("select * from Users where username='"+username +"'and password='"+password +"' and roll_id=2");
 
     if(qry.exec()){
@@ -87,7 +85,7 @@ void MainWindow::on_pushButton_clicked()
             assistantinfo.setModal(true);
             assistantinfo.exec();
 
-//
+
         }
         if(count<1){
             ui->label->setText("Username and password (is not) TRUE ");
@@ -95,7 +93,7 @@ void MainWindow::on_pushButton_clicked()
 
     }
 
-
+//LABORANT LOGIN
     qry.prepare("select * from Users where username='"+username +"'and password='"+password +"' and roll_id=4");
 
     if(qry.exec()){
@@ -113,7 +111,6 @@ void MainWindow::on_pushButton_clicked()
             laborantinfo.setModal(true);
             laborantinfo.exec();
 
-//
         }
         if(count<1){
             ui->label->setText("Username and password (is not) TRUE ");
@@ -121,18 +118,12 @@ void MainWindow::on_pushButton_clicked()
 
     }
 
-
-//
 }
 
 
 void MainWindow::on_pushButton_2_Signin_clicked()
 {
-    //Login Panelinde kullanıcı adi ve sifre line olusturuldu
-    QString username,password;
-    username=ui->lineEdit_Username->text();
-    password=ui->lineEdit_2_Password->text();
-
+//User Ekleme islemi baslangici ve database ekleme islemi
     connOpen();
     QSqlQuery qry;
 

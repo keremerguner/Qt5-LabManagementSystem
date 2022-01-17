@@ -10,7 +10,7 @@ assistantinfo::assistantinfo(QWidget *parent) :
     ui->setupUi(this);
     WelcomeText();
 
-    //Database basariyla aciliyormu kontorlu yapildi
+//Database basariyla aciliyormu kontorlu yapildi
     MainWindow conn;
     if(!conn.connOpen()){
 
@@ -27,6 +27,7 @@ assistantinfo::~assistantinfo()
 }
 
 void assistantinfo::DataBaseControlAssistant(){
+//Database eger ki acilmazsa hata mesaji ( kontrol edildi )
     MainWindow conn;
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
@@ -37,6 +38,7 @@ void assistantinfo::DataBaseControlAssistant(){
 }
 void assistantinfo::on_pushButton_assistant_load_tbl_clicked()
 {
+//Assistanin Hatanin kan grubunu duzenlemesi icin bilgiler tabela yazdirildigi kisim
     MainWindow conn;
     QSqlQueryModel * modal = new QSqlQueryModel();
 
@@ -56,18 +58,18 @@ void assistantinfo::on_pushButton_assistant_load_tbl_clicked()
 void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 {
     MainWindow conn;
-    //Hasta kan grubunun guncellenmesi icin assistant pannel
+//Hasta kan grubunun guncellenmesi icin assistant pannel
     QString blood_group,tc;
     blood_group=ui->txt_assistant_blood_group->text();
     tc=ui->txt_assistant_tc->text();
 
 
-    //Database icine giris yapildi mi kontrolu saglandi
+//Database icine giris yapildi mi kontrolu saglandi
     DataBaseControlAssistant();
 
     conn.connOpen();
     QSqlQuery qry;
-    //En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
+//En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
     qry.prepare("update Users set blood_group='"+blood_group+"',tc='"+tc+"' where tc='"+tc+"'");
 
     if(qry.exec()){
@@ -82,6 +84,7 @@ void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 
 void assistantinfo::on_tableView_assistant_activated(const QModelIndex &index)
 {
+//TableViewda Kan grubunun editlendigi yer
     QString val=ui->tableView_assistant->model()->data(index).toString();
 
     MainWindow conn;
@@ -112,7 +115,7 @@ void assistantinfo::on_tableView_assistant_activated(const QModelIndex &index)
 
 
 void assistantinfo::WelcomeText(){
-
+//Sol ust barda Assistant bilgisi
     MainWindow conn;
 
     QSqlQuery* qryAs = new QSqlQuery(conn.mydb);
@@ -132,6 +135,7 @@ void assistantinfo::WelcomeText(){
 
 void assistantinfo::on_pushButton_closed_clicked()
 {
+//Bir Onceki Menuye Doner
     this->hide();
 }
 

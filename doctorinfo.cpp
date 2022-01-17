@@ -29,6 +29,7 @@ DoctorInfo::~DoctorInfo()
 }
 
 void DoctorInfo::DataBaseControlDoctor(){
+//Database eger ki acilmazsa hata mesaji ( kontrol edildi )
     MainWindow conn;
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
@@ -38,6 +39,7 @@ void DoctorInfo::DataBaseControlDoctor(){
 
 void DoctorInfo::on_pushButton_clicked()
 {
+//Yeni bir hasta eklerken kullanilan fonksiyon
     DataBaseControlDoctor();
     MainWindow conn;
 //Yeni hasta kayit ederken SAVE isleminin dondugu yer
@@ -140,6 +142,7 @@ void DoctorInfo::on_pushButton_load_tbl_clicked()
     qry->prepare("select name,surname,blood_group,tc from Users where roll_id=3");
     qryListView->prepare("select name from Users where roll_id=3");
 
+    //TableView ve ListView da goruntulenen kisimlarinin sorgusunun ve goruntulenmesinin yapildigi yer
     qry->exec();
     qryListView->exec();
     modal->setQuery(*qry);
@@ -149,12 +152,12 @@ void DoctorInfo::on_pushButton_load_tbl_clicked()
 
 
     conn.connClose();
-    //qDebug() << (modal->rowCount());
 }
 
 
 void DoctorInfo::on_listView_activated(const QModelIndex &index)
 {
+//ListView da iki kere tiklayinca bilgilerin otomatik olarak getirmesi saglandi
     QString val=ui->listView->model()->data(index).toString();
     MainWindow conn;
 
@@ -185,6 +188,7 @@ void DoctorInfo::on_listView_activated(const QModelIndex &index)
 }
 
 void DoctorInfo::WelcomeTextDoctor(){
+//Sol ust barda Doktor bilgisi
 
     MainWindow conn;
 
@@ -206,12 +210,14 @@ void DoctorInfo::WelcomeTextDoctor(){
 
 void DoctorInfo::on_pushButton_2_closed_clicked()
 {
+//Bir önceki ekrana atar
     this->hide();
 }
 
 
 void DoctorInfo::on_pushButton_2_Edit_Proifle_Doctor_clicked()
 {
+//Doktor edit islemi icin EditProfile UI sine yonlendirme kismi
     EditProfile editprofile;
     editprofile.setModal(true);
     editprofile.exec();
