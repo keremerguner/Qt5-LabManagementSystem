@@ -16,7 +16,12 @@ public:
     ~EditProfile();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_pushButton_profileEdit_Update_clicked();
+
+    void on_pushButton_2_ProfileEdit_Load_To_List_clicked();
+
+    void on_listView_activated(const QModelIndex &index);
 
 private:
     Ui::EditProfile *ui;

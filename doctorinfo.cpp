@@ -1,6 +1,7 @@
 #include "doctorinfo.h"
 #include "ui_doctorinfo.h"
 #include <QMessageBox>
+#include "editprofile.h"
 
 DoctorInfo::DoctorInfo(QWidget *parent) :
     QDialog(parent),
@@ -8,6 +9,8 @@ DoctorInfo::DoctorInfo(QWidget *parent) :
 {
     ui->setupUi(this);
     WelcomeTextDoctor();
+
+    editProfile = new EditProfile();
 
 //Database basariyla aciliyormu kontorlu yapildi
     MainWindow conn;
@@ -204,5 +207,13 @@ void DoctorInfo::WelcomeTextDoctor(){
 void DoctorInfo::on_pushButton_2_closed_clicked()
 {
     this->hide();
+}
+
+
+void DoctorInfo::on_pushButton_2_Edit_Proifle_Doctor_clicked()
+{
+    EditProfile editprofile;
+    editprofile.setModal(true);
+    editprofile.exec();
 }
 

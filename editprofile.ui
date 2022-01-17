@@ -16,8 +16,8 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>150</y>
+     <x>20</x>
+     <y>130</y>
      <width>271</width>
      <height>251</height>
     </rect>
@@ -25,7 +25,7 @@
    <property name="title">
     <string>Profile Edit</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -68,7 +68,7 @@
       </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_profileEdit_Update">
        <property name="text">
         <string>Update</string>
        </property>
@@ -76,6 +76,29 @@
      </item>
     </layout>
    </widget>
+  </widget>
+  <widget class="QListView" name="listView">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>150</y>
+     <width>256</width>
+     <height>181</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2_ProfileEdit_Load_To_List">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>340</y>
+     <width>251</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Load To List</string>
+   </property>
   </widget>
  </widget>
  <resources/>

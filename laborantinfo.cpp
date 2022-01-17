@@ -7,6 +7,7 @@ LaborantInfo::LaborantInfo(QWidget *parent) :
     ui(new Ui::LaborantInfo)
 {
     ui->setupUi(this);
+    WelcomeTextLaborant();
 }
 
 LaborantInfo::~LaborantInfo()
@@ -32,6 +33,23 @@ void LaborantInfo::on_pushButton_Load_To_Table_clicked()
     conn.connClose();
 }
 
+void LaborantInfo::WelcomeTextLaborant(){
+
+    MainWindow conn;
+
+    QSqlQuery* qryAsDoc = new QSqlQuery(conn.mydb);
+
+    qryAsDoc->prepare("select name from Users where roll_id=4");
+
+
+
+    qryAsDoc->exec();
+    while(qryAsDoc->next())
+        {
+            ui->label->setText("Welcome Lab. " + qryAsDoc->value(0).toString() + "!");
+
+        }
+}
 
 void LaborantInfo::on_pushButton_close_clicked()
 {

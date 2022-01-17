@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "mainwindow.h"
+#include "editprofile.h"
 
 namespace Ui {
 class DoctorInfo;
@@ -33,8 +34,12 @@ private slots:
 
     void on_pushButton_2_closed_clicked();
 
+    void on_pushButton_2_Edit_Proifle_Doctor_clicked();
+
 private:
     Ui::DoctorInfo *ui;
+
+    EditProfile *editProfile;
 };
 
 #endif // DOCTORINFO_H

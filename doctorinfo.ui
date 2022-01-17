@@ -223,6 +223,19 @@
     <string>CLOSE</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_2_Edit_Proifle_Doctor">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>91</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit Profile</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
