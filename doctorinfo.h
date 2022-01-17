@@ -1,20 +1,20 @@
-#ifndef EMPLOYEEINFO_H
-#define EMPLOYEEINFO_H
+#ifndef DOCTORINFO_H
+#define DOCTORINFO_H
 
 #include <QDialog>
 #include "mainwindow.h"
 
 namespace Ui {
-class EmployeeInfo;
+class DoctorInfo;
 }
 
-class EmployeeInfo : public QDialog
+class DoctorInfo : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit EmployeeInfo(QWidget *parent = nullptr);
-    ~EmployeeInfo();
+    explicit DoctorInfo(QWidget *parent = nullptr);
+    ~DoctorInfo();
 
 private slots:
     void on_pushButton_clicked();
@@ -28,7 +28,7 @@ private slots:
     void on_listView_activated(const QModelIndex &index);
 
 private:
-    Ui::EmployeeInfo *ui;
+    Ui::DoctorInfo *ui;
 };
 
-#endif // EMPLOYEEINFO_H
+#endif // DOCTORINFO_H

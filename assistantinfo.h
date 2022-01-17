@@ -22,6 +22,8 @@ private slots:
 
     void on_tableView_assistant_activated(const QModelIndex &index);
 
+    void WelcomeText();
+
 private:
     Ui::assistantinfo *ui;
 };

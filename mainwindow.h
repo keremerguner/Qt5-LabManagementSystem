@@ -5,7 +5,8 @@
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
-#include "employeeinfo.h"
+#include "doctorinfo.h"
+#include "assistantinfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,6 +51,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    assistantinfo *assistantinfoWelcomeText;
+
 
 };
 #endif // MAINWINDOW_H

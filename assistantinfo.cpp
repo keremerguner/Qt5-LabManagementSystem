@@ -8,8 +8,9 @@ assistantinfo::assistantinfo(QWidget *parent) :
     ui(new Ui::assistantinfo)
 {
     ui->setupUi(this);
+    WelcomeText();
 
-//Database basariyla aciliyormu kontorlu yapildi
+    //Database basariyla aciliyormu kontorlu yapildi
     MainWindow conn;
     if(!conn.connOpen()){
 
@@ -40,20 +41,19 @@ void assistantinfo::on_pushButton_assistant_load_tbl_clicked()
     modal->setQuery(*qry);
     ui->tableView_assistant->setModel(modal);
 
-
 }
 
 
 void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 {
     MainWindow conn;
-//Hasta kan grubunun guncellenmesi icin assistant pannel
+    //Hasta kan grubunun guncellenmesi icin assistant pannel
     QString blood_group,tc;
     blood_group=ui->txt_assistant_blood_group->text();
     tc=ui->txt_assistant_tc->text();
 
 
-//Database icine giris yapildi mi kontrolu saglandi
+    //Database icine giris yapildi mi kontrolu saglandi
     if(!conn.connOpen()){
         qDebug()<< "Failed to open the database";
         return;
@@ -62,12 +62,12 @@ void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 
     conn.connOpen();
     QSqlQuery qry;
-//En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
+    //En sonda where diye eklenen yer nereyi parametre alarak duzenleme yapacagini belirtir. Biz TC'ye göre update islemini gerceklestiriyoruz
     qry.prepare("update Users set blood_group='"+blood_group+"',tc='"+tc+"' where tc='"+tc+"'");
 
     if(qry.exec()){
-    QMessageBox::critical(this,tr("Edit"),tr("Update"));
-    conn.connClose();
+        QMessageBox::critical(this,tr("Edit"),tr("Update"));
+        conn.connClose();
     }
     else{
         QMessageBox::critical(this,tr("error::"),qry.lastError().text());
@@ -97,7 +97,7 @@ void assistantinfo::on_tableView_assistant_activated(const QModelIndex &index)
             ui->txt_assistant_tc->setText(qry.value(7).toString());
 
         }
-    conn.connClose();
+        conn.connClose();
     }
     else{
         QMessageBox::critical(this,tr("error::"),qry.lastError().text());
@@ -105,3 +105,23 @@ void assistantinfo::on_tableView_assistant_activated(const QModelIndex &index)
 
 }
 
+
+void assistantinfo::WelcomeText(){
+
+    MainWindow conn;
+
+    QSqlQuery* qryAs = new QSqlQuery(conn.mydb);
+
+    qryAs->prepare("select name from Users where roll_id=2");
+
+
+
+    qryAs->exec();
+   // QMessageBox::warning(this,,"Ke");
+    while(qryAs->next())
+        {
+            ui->label_3->setText("Welcome " + qryAs->value(0).toString() + "!");
+
+        }
+
+}

@@ -1,10 +1,10 @@
-#include "employeeinfo.h"
-#include "ui_employeeinfo.h"
+#include "doctorinfo.h"
+#include "ui_doctorinfo.h"
 #include <QMessageBox>
 
-EmployeeInfo::EmployeeInfo(QWidget *parent) :
+DoctorInfo::DoctorInfo(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::EmployeeInfo)
+    ui(new Ui::DoctorInfo)
 {
     ui->setupUi(this);
 
@@ -19,12 +19,12 @@ EmployeeInfo::EmployeeInfo(QWidget *parent) :
     }
 }
 
-EmployeeInfo::~EmployeeInfo()
+DoctorInfo::~DoctorInfo()
 {
     delete ui;
 }
 
-void EmployeeInfo::on_pushButton_clicked()
+void DoctorInfo::on_pushButton_clicked()
 {
     MainWindow conn;
 //Yeni hasta kayit ederken SAVE isleminin dondugu yer
@@ -60,7 +60,7 @@ void EmployeeInfo::on_pushButton_clicked()
 }
 
 
-void EmployeeInfo::on_pushButton_Edit_clicked()
+void DoctorInfo::on_pushButton_Edit_clicked()
 {
 
         MainWindow conn;
@@ -98,7 +98,7 @@ void EmployeeInfo::on_pushButton_Edit_clicked()
 }
 
 
-void EmployeeInfo::on_pushButton_Delete_clicked()
+void DoctorInfo::on_pushButton_Delete_clicked()
 {
 //Delete isleminde sadece Tc'ye gore yapiyoruz
     MainWindow conn;
@@ -127,7 +127,7 @@ void EmployeeInfo::on_pushButton_Delete_clicked()
 }
 
 
-void EmployeeInfo::on_pushButton_load_tbl_clicked()
+void DoctorInfo::on_pushButton_load_tbl_clicked()
 {
     MainWindow conn;
     QSqlQueryModel * modal = new QSqlQueryModel();
@@ -153,7 +153,7 @@ void EmployeeInfo::on_pushButton_load_tbl_clicked()
 }
 
 
-void EmployeeInfo::on_listView_activated(const QModelIndex &index)
+void DoctorInfo::on_listView_activated(const QModelIndex &index)
 {
     QString val=ui->listView->model()->data(index).toString();
     MainWindow conn;

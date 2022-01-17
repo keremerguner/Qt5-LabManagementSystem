@@ -10,18 +10,18 @@ CONFIG += c++11
 
 SOURCES += \
     assistantinfo.cpp \
-    employeeinfo.cpp \
+    doctorinfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     assistantinfo.h \
-    employeeinfo.h \
+    doctorinfo.h \
     mainwindow.h
 
 FORMS += \
     assistantinfo.ui \
-    employeeinfo.ui \
+    doctorinfo.ui \
     mainwindow.ui
 
 # Default rules for deployment.

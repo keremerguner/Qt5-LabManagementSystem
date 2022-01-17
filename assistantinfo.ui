@@ -36,41 +36,6 @@
     <string>LOAD TO TABLE</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_assistan_blood_group_update">
-   <property name="geometry">
-    <rect>
-     <x>660</x>
-     <y>290</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Update</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>610</x>
-     <y>240</y>
-     <width>191</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Blood Group</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="txt_assistant_blood_group"/>
-    </item>
-   </layout>
-  </widget>
   <widget class="QLabel" name="label_third_status">
    <property name="geometry">
     <rect>
@@ -84,27 +49,88 @@
     <string>TextLabel</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>200</y>
-     <width>191</width>
-     <height>26</height>
+     <x>20</x>
+     <y>10</y>
+     <width>211</width>
+     <height>16</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Tc</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="txt_assistant_tc"/>
-    </item>
-   </layout>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>120</y>
+     <width>281</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Update</string>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>90</y>
+      <width>191</width>
+      <height>38</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Tc</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_assistant_tc"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>130</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Blood Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="txt_assistant_blood_group"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton_assistan_blood_group_update">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>180</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Update</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

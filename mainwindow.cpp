@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 //
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -55,9 +56,9 @@ void MainWindow::on_pushButton_clicked()
             //Eger basarili giris yapilirsa login ekrannii silip ikinci ekrani gösterir
             connClose();
             this->hide();
-            EmployeeInfo employeeinfo;
-            employeeinfo.setModal(true);
-            employeeinfo.exec();
+            DoctorInfo doctorinfo;
+            doctorinfo.setModal(true);
+            doctorinfo.exec();
 //
         }
         if(count<1){
@@ -84,6 +85,7 @@ void MainWindow::on_pushButton_clicked()
             assistantinfo assistantinfo;
             assistantinfo.setModal(true);
             assistantinfo.exec();
+            //assistantinfoAsd->Asd();
 //
         }
         if(count<1){
