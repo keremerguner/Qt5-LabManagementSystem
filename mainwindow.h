@@ -49,9 +49,10 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_Signin_clicked();
+
 private:
     Ui::MainWindow *ui;
-    assistantinfo *assistantinfoWelcomeText;
 
 
 };

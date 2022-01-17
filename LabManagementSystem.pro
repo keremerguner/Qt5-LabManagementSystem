@@ -9,19 +9,28 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    addusers.cpp \
     assistantinfo.cpp \
     doctorinfo.cpp \
+    editprofile.cpp \
+    laborantinfo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    addusers.h \
     assistantinfo.h \
     doctorinfo.h \
+    editprofile.h \
+    laborantinfo.h \
     mainwindow.h
 
 FORMS += \
+    addusers.ui \
     assistantinfo.ui \
     doctorinfo.ui \
+    editprofile.ui \
+    laborantinfo.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -26,6 +26,15 @@ assistantinfo::~assistantinfo()
     delete ui;
 }
 
+void assistantinfo::DataBaseControlAssistant(){
+    MainWindow conn;
+    if(!conn.connOpen()){
+        qDebug()<< "Failed to open the database";
+        return;
+
+    }
+
+}
 void assistantinfo::on_pushButton_assistant_load_tbl_clicked()
 {
     MainWindow conn;
@@ -54,11 +63,7 @@ void assistantinfo::on_pushButton_assistan_blood_group_update_clicked()
 
 
     //Database icine giris yapildi mi kontrolu saglandi
-    if(!conn.connOpen()){
-        qDebug()<< "Failed to open the database";
-        return;
-
-    }
+    DataBaseControlAssistant();
 
     conn.connOpen();
     QSqlQuery qry;
@@ -117,11 +122,16 @@ void assistantinfo::WelcomeText(){
 
 
     qryAs->exec();
-   // QMessageBox::warning(this,,"Ke");
     while(qryAs->next())
         {
-            ui->label_3->setText("Welcome " + qryAs->value(0).toString() + "!");
+            ui->label_3_login_assistan_info->setText("Welcome Asst. " + qryAs->value(0).toString() + "!");
 
         }
 
 }
+
+void assistantinfo::on_pushButton_closed_clicked()
+{
+    this->hide();
+}
+

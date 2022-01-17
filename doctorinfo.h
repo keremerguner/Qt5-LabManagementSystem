@@ -27,6 +27,12 @@ private slots:
 
     void on_listView_activated(const QModelIndex &index);
 
+    void WelcomeTextDoctor();
+
+    void DataBaseControlDoctor();
+
+    void on_pushButton_2_closed_clicked();
+
 private:
     Ui::DoctorInfo *ui;
 };

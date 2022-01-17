@@ -7,6 +7,7 @@ DoctorInfo::DoctorInfo(QWidget *parent) :
     ui(new Ui::DoctorInfo)
 {
     ui->setupUi(this);
+    WelcomeTextDoctor();
 
 //Database basariyla aciliyormu kontorlu yapildi
     MainWindow conn;
@@ -24,8 +25,17 @@ DoctorInfo::~DoctorInfo()
     delete ui;
 }
 
+void DoctorInfo::DataBaseControlDoctor(){
+    MainWindow conn;
+    if(!conn.connOpen()){
+        qDebug()<< "Failed to open the database";
+        return;
+    }
+}
+
 void DoctorInfo::on_pushButton_clicked()
 {
+    DataBaseControlDoctor();
     MainWindow conn;
 //Yeni hasta kayit ederken SAVE isleminin dondugu yer
     QString name,surname,blood_group,tc,gender,age;
@@ -38,12 +48,7 @@ void DoctorInfo::on_pushButton_clicked()
 
 
 //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
-    if(!conn.connOpen()){
-        qDebug()<< "Failed to open the database";
-        return;
-
-    }
-
+    DataBaseControlDoctor();
     conn.connOpen();
     QSqlQuery qry;
 //Save isleminin sorgusunun dondugu yer
@@ -75,11 +80,7 @@ void DoctorInfo::on_pushButton_Edit_clicked()
 
 
 //Database icine giris yapildi mi kontrolu saglandi
-        if(!conn.connOpen()){
-            qDebug()<< "Failed to open the database";
-            return;
-
-        }
+        DataBaseControlDoctor();
 
         conn.connOpen();
         QSqlQuery qry;
@@ -107,11 +108,7 @@ void DoctorInfo::on_pushButton_Delete_clicked()
 
 
 //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
-    if(!conn.connOpen()){
-        qDebug()<< "Failed to open the database";
-        return;
-
-    }
+    DataBaseControlDoctor();
 
     conn.connOpen();
     QSqlQuery qry;
@@ -159,11 +156,7 @@ void DoctorInfo::on_listView_activated(const QModelIndex &index)
     MainWindow conn;
 
 //Database icine giris yapildi mi kontrolu saglandi (sorgulari yapildi)
-    if(!conn.connOpen()){
-        qDebug()<< "Failed to open the database";
-        return;
-
-    }
+    DataBaseControlDoctor();
 //
     conn.connOpen();
     QSqlQuery qryListView;
@@ -187,3 +180,29 @@ void DoctorInfo::on_listView_activated(const QModelIndex &index)
         QMessageBox::critical(this,tr("error::"),qryListView.lastError().text());
     }
 }
+
+void DoctorInfo::WelcomeTextDoctor(){
+
+    MainWindow conn;
+
+    QSqlQuery* qryAsDoc = new QSqlQuery(conn.mydb);
+
+    qryAsDoc->prepare("select name from Users where roll_id=1");
+
+
+
+    qryAsDoc->exec();
+    while(qryAsDoc->next())
+        {
+            ui->label_7_login_doctor_info->setText("Welcome Dr. " + qryAsDoc->value(0).toString() + "!");
+
+        }
+
+}
+
+
+void DoctorInfo::on_pushButton_2_closed_clicked()
+{
+    this->hide();
+}
+

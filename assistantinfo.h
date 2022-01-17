@@ -24,6 +24,10 @@ private slots:
 
     void WelcomeText();
 
+    void DataBaseControlAssistant();
+
+    void on_pushButton_closed_clicked();
+
 private:
     Ui::assistantinfo *ui;
 };
